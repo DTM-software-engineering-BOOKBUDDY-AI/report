@@ -189,3 +189,5 @@ FOREIGN KEY (book_id) REFERENCES book(id)
     - Cached responses for performance
 
 
+# Recomendation system explanation
+Here's a detailed explanation of the recommendation system in markdown format:
