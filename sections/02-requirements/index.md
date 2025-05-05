@@ -1,3 +1,9 @@
+---
+title: Requirements
+has_children: false
+nav_order: 3
+---
+
 # BookBuddy Requirements
 
 ## Functional Requirements
