@@ -21,38 +21,9 @@ This report provides a detailed analysis of the Bookbuddy Flask project based on
 *   **Actual Architecture (N-Tier):**
     *   **Presentation Tier (Client/Frontend):** Web browser rendering HTML (`Templates/`), CSS (`static/css/`), and JavaScript (`static/js/`). Handles user interaction and displays data.
     *   **Application Tier (Backend Server):** Flask application (`app.py`, `routes/`). Handles HTTP requests, processes user input (Forms in `forms.py`), orchestrates business logic (user management, recommendations, library management), and interacts with the data tier. It also includes specific services like `GoogleBooksAPI` and `BookRecommender`.
-    *   **Data Tier:** Relational Database (likely SQLite by default, configurable via `config.py`) managed by SQLAlchemy (`models.py`, `extensions.py`). Persists application data.
+    *   **Data Tier:** Relational Database (configured via `config.py`) managed by SQLAlchemy (`models.py`, `extensions.py`). Persists application data.
     *   **External Services Tier:** Google Books API (accessed via `services/google_books.py`). Provides external book data.
-*   **Motivation:** This N-Tier structure is standard for web applications like Bookbuddy. It clearly separates UI, backend logic, and data storage, making development, scaling, and maintenance more manageable.
-*   **High-Level Overview Diagram:**
 
-    ```mermaid
-    graph LR
-        A[Client Browser] -- HTTP Request --> B(Flask Application Server);
-        B -- Python Calls --> C{Business Logic};
-        C -- Python Calls --> D[Data Access Layer (SQLAlchemy)];
-        D -- SQL --> E[(Database)];
-        C -- Python Calls --> F[Recommendation Service];
-        C -- Python Calls --> G[Google Books Service];
-        G -- HTTPS API Call --> H[(Google Books API)];
-        B -- HTTP Response --> A;
-
-        subgraph Application Tier
-            B
-            C
-            F
-            G
-            D
-        end
-
-        subgraph Data Tier
-            E
-        end
-
-        subgraph External Services
-            H
-        end
-    ```
 
 *   **Component Responsibilities:**
     *   **Client Browser:** Renders UI, sends user requests.
