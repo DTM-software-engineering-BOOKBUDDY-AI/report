@@ -3,8 +3,8 @@ title: Development
 has_children: false
 nav_order: 5
 ---
-# Development
 
+# Development
 This section outlines the version control practices employed during the project and discusses a key learning experience related to project setup.
 
 ## Version Control (Git & GitHub)
