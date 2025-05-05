@@ -1,3 +1,9 @@
+---
+title: Concept
+has_children: false
+nav_order: 2
+---
+
 # BookBuddy - Your Personal Reading Companion
 
 ## Concept
