@@ -35,62 +35,14 @@ This report provides a detailed analysis of the Bookbuddy Flask project based on
     *   **Database:** Stores persistent user data, book information, preferences, and reading lists.
     *   **Google Books API:** Provides external book data (search, details).
 
-*   **UML Component Diagram:**
-
-    ```mermaid
-    componentDiagram
-        package "Browser" {
-            [Web UI]
-        }
-
-        package "Bookbuddy Server" {
-            [Flask App (app.py)] as App
-            [Routes (routes/)] as Routes
-            [Forms (forms.py)] as Forms
-            [Models (models.py)] as Models
-            [Extensions (extensions.py)] as Ext
-            [Recommendation (Recommendation.py)] as RecSvc
-            [Google Books (services/google_books.py)] as GBService
-            [Templates (Templates/)] as Templates
-            [Static Files (static/)] as Static
-
-            App --> Routes
-            App --> Forms
-            App --> Models
-            App --> Ext
-            App --> RecSvc
-            App --> GBService
-            App --> Templates
-            App --> Static
-            Routes ..> App
-            Forms ..> App
-            Models ..> Ext
-            RecSvc ..> Models
-            GBService ..> App  // Accesses config/API key
-        }
-
-        package "Database" {
-            [SQL Database] as DB
-        }
-
-        package "External" {
-            [Google Books API] as GoogleAPI
-        }
-
-        [Web UI] ..> App : HTTP
-        App ..> DB : SQLAlchemy (via Ext, Models)
-        GBService ..> GoogleAPI : HTTPS/REST
-
-    ```
 
 ## 2. Infrastructure
 
 *   **Infrastructural Components:**
     *   **Client:** User's web browser. (Many)
-    *   **Web Server:** Flask development server (for `flask run`), or potentially a production server like Gunicorn/uWSGI behind a reverse proxy (e.g., Nginx) in a real deployment. (1+)
-    *   **Database Server:** Hosts the relational database (e.g., PostgreSQL, MySQL, or the file system for SQLite). (1)
+    *   **Web Server:** Flask development server (for `flask run`).
+    *   **Database Server:** Hosts the relational database (e.g., PostgreSQL, MySQL, or the file system for SQLite).
     *   **External API:** Google Books API servers. (Managed by Google)
-    *   *(Potential Future Components):* Load Balancer (if scaling), Cache Server (e.g., Redis, Memcached - although currently using in-memory `cachetools`), Task Queue/Workers (for long-running tasks like complex recommendations or notifications).
 *   **Component Distribution:**
     *   Initially (development): Flask server and SQLite database likely run on the **same machine**.
     *   Production: Web server(s) and Database server could be on separate machines, potentially within the **same datacenter/network** for low latency.
@@ -100,31 +52,6 @@ This report provides a detailed analysis of the Bookbuddy Flask project based on
     *   **Server to Database:** Connection string in Flask config (`config.py`, likely using `localhost` or a specific hostname/IP if separate).
     *   **Server to Google Books API:** Uses the fixed base URL (`https://www.googleapis.com/books/v1`) defined in `services/google_books.py`.
     *   *(Future):* Service Discovery might be used if deploying microservices. Load Balancers would distribute traffic across multiple web server instances.
-*   **UML Deployment Diagram (Simplified):**
-
-    ```mermaid
-    deploymentDiagram
-        node "User Device" as UserDevice {
-            artifact "Browser" as Browser
-        }
-
-        node "Bookbuddy Server" as AppServer {
-            artifact "Flask Application" as FlaskApp
-            node "Database" as DBNode {
-              artifact "SQL Database" as DB
-            }
-            FlaskApp -->> DB : Connects
-        }
-
-        node "Google Cloud" as GoogleCloud {
-            artifact "Google Books API" as GoogleAPI
-        }
-
-        Browser ->> FlaskApp : HTTP/S
-        FlaskApp ->> GoogleAPI : HTTPS API Calls
-
-    ```
-    *(Note: In production, the DB might be a separate node, and there could be multiple AppServer nodes behind a load balancer).*
 
 ## 3. Modelling
 
@@ -146,40 +73,7 @@ This report provides a detailed analysis of the Bookbuddy Flask project based on
             *   *Application Services:* Logic within Flask routes coordinating repository access and domain service usage.
             *   *Infrastructure Services:* `GoogleBooksAPI` (handles interaction with external system).
     *   **Domain Events (Potential):** `UserRegistered`, `ProfileUpdated`, `BookAddedToReadingList`, `ReadingStatusChanged`, `RecommendationGenerated`, `PreferencesUpdated`. (These are not explicitly implemented with an event system but represent significant state changes).
-    *   **Context Map Diagram (Conceptual):**
 
-        ```mermaid
-        graph TD
-            subgraph IAM [Identity & Access Mgt]
-                U(User)
-                UP(UserPreferences)
-            end
-
-            subgraph Catalog [Book Catalog & Discovery]
-                B(Book)
-                GBS(GoogleBooks Service) --- ExtAPI[(Google Books API)]
-            end
-
-            subgraph Library [Personal Library Mgt]
-                RL(ReadingList)
-            end
-
-            subgraph Reco [Recommendation]
-                RecSvc(Recommender Service)
-            end
-
-            IAM -- Manages --> Library
-            Library -- Contains --> Catalog
-            Reco -- Uses --> IAM
-            Reco -- Uses --> Catalog
-            Catalog -- Fetches From --> GBS
-
-            style IAM fill:#f9f,stroke:#333,stroke-width:2px
-            style Catalog fill:#ccf,stroke:#333,stroke-width:2px
-            style Library fill:#cfc,stroke:#333,stroke-width:2px
-            style Reco fill:#ffc,stroke:#333,stroke-width:2px
-        ```
-        *(Relationships show dependencies/information flow)*
 
 *   **Object-Oriented Modelling:**
     *   **Main Data Types (Classes):**
