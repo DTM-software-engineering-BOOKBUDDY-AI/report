@@ -27,4 +27,8 @@ I was responsible for structuring and styling the website by organizing JavaScri
 This project taught me the value of responsibility, teamwork, and being open to feedback.In the end, we built a simple but effective website that meets its goals, and I’m grateful for the great collaboration within our team.
 
 
+## Mohammad's Section
 
+For the BookBuddy project, I worked mostly on the backend and some parts of the frontend. I set up the Flask app, created the initial configuration, and made sure the database was set up properly when the app runs for the first time. I also connected the Google Books API, wrote the function to fetch book data, and added related API routes.
+
+On the frontend side, I helped with some of the HTML pages to improve how the app looks and works for users. Overall, I learned a lot about building a full-stack app and really enjoyed working with my teammates to make something that actually works.
