@@ -5,7 +5,11 @@
 This section provides a critical self-evaluation of the Bookbuddy project, assessing strengths, weaknesses, and lessons learned throughout the development process.
 
 ## Xiuyue's Section 
-- Successfully implemented the TEST part (finish it later) 
+For our BookBuddy project, I was responsible for the testing phase. I reviewed the lessons and adhered to a clear, well-organized testing structure, separating folders for different components-such as modules, routes, forms, etc. I also performed test-coverage and configuration checks to ensure the application’s reliability and compatibility. However, there are still some untested or overlooked directories that we can address in the near future.
+
+In addition to testing, I served as the team’s timekeeper: tracking our progress, scheduling and organizing meetings, and making sure we stayed on track. This project was both fun and challenging-especially for those of us from non-technical backgrounds. To prepare, I studied online resources and open courses, and, with the support of my groupmates, we ultimately delivered a fully functioning and engaging book-recommendation application.
+
+This experience was invaluable, giving me a practical, end-to-end view of software development. I’d like to thank all my group members for their outstanding collaboration-and our professors for expanding our knowledge of software engineering.
 
 ## Enes Turan's Section
 - Delivered core functionality on schedule
