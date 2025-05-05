@@ -1,3 +1,8 @@
+---
+title: Release
+has_children: false
+nav_order: 7
+---
 # Release Process
 
 This document outlines the components, target environments, deployment steps, licensing, and versioning strategy for the BookBuddy application.
