@@ -4,6 +4,7 @@ has_children: false
 nav_order: 8
 ---
 
+# Deployment
 ## Deployment Strategy
 
 The Bookbuddy project implements a robust deployment strategy to ensure reliable and efficient delivery of the application:
