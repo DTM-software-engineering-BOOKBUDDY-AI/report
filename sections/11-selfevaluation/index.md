@@ -29,6 +29,11 @@ This project taught me the value of responsibility, teamwork, and being open to 
 
 ## Mohammad's Section
 
-For the BookBuddy project, I worked mostly on the backend and some parts of the frontend. I set up the Flask app, created the initial configuration, and made sure the database was set up properly when the app runs for the first time. I also connected the Google Books API, wrote the function to fetch book data, and added related API routes.
+In the BookBuddy project, I worked on several important parts of the application, mainly focusing on the backend but also contributing to the frontend. One of my main responsibilities was setting up the Flask application. I configured the app so that it runs smoothly from the beginning, including setting up the necessary environment, initializing the database, and organizing the structure of the backend code.
 
-On the frontend side, I helped with some of the HTML pages to improve how the app looks and works for users. Overall, I learned a lot about building a full-stack app and really enjoyed working with my teammates to make something that actually works.
+I also connected the Google Books API to our app. I wrote the function that sends requests to the API and fetches book data based on user input. This feature was a key part of our app’s functionality, allowing users to search for and discover new books. I added API routes to make this interaction possible and helped make sure the data could flow properly between the frontend and backend.
+
+Besides backend tasks, I helped with several HTML pages to improve the look and usability of the app. I made sure that the layout was clean and that users could easily interact with the search and recommendation features.
+
+Working on this project taught me a lot about building a web application from scratch — not just the technical parts like Flask, APIs, and HTML, but also how to collaborate with a team, share code effectively, and manage tasks together. It was a great learning experience, and I’m proud of how much we achieved as a group.
+
