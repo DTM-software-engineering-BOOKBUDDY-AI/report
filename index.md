@@ -10,9 +10,9 @@ nav_order: 1
 ### Authors
 - [Alireza Shahi](alireza.shahi@studio.unibo.it)
 - [Mohammad Atabaki](mohammad.atabaki@studio.unibo.it)
-- [Xiuyue Zhang] (xiuyue.zhang@studio.unibo.it)
-- [Enes Turan] (enes.turan@studio.unibo.it)
-- [Shahab Aminraoufpour] (shahab.aminraoufpour@studio.unibo.it)
+- [Xiuyue Zhang](xiuyue.zhang@studio.unibo.it)
+- [Enes Turan](enes.turan@studio.unibo.it)
+- [Shahab Aminraoufpour](shahab.aminraoufpour@studio.unibo.it)
 
 ## Abstract
 
