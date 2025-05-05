@@ -3,6 +3,7 @@ title: Concept
 has_children: false
 nav_order: 2
 ---
+# Concept
 
 # BookBuddy - Your Personal Reading Companion
 
