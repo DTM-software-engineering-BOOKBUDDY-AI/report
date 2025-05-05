@@ -19,11 +19,11 @@ This experience was invaluable, giving me a practical, end-to-end view of softwa
 - Developed comprehensive documentation
 
 
-## shahab's Section 
+## Shahab's Section 
 As a student with management background , this was my first experience building a website. One of my biggest challenges was dealing with my limited technical knowledge, especially at the start.
 Ali played a key role in shaping both the technical structure and the report. With his support, I was able to better understand the technical side and contribute more effectively.  
 
-I was responsible for structuring and styling the website by organizing JavaScript and CSS files, creating key components like search, homepage, and profile pages. My focus was on ensuring design consistency and responsiveness across the site. 
+I was responsible for structuring and styling the website by organizing JavaScript and CSS structure, creating key components like search, homepage, and profile pages. My focus was on ensuring design consistency and responsiveness across the site. 
 This project taught me the value of responsibility, teamwork, and being open to feedback.In the end, we built a simple but effective website that meets its goals, and I’m grateful for the great collaboration within our team.
 
 
