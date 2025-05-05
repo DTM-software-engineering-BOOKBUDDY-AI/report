@@ -3,8 +3,8 @@ title: Validation
 has_children: false
 nav_order: 6
 ---
-# Testing
 
+# Validation
 ## Test Development Process
 
 The BookBuddy application followed a hybrid testing approach, combining elements of test-driven development (TDD-like practices) with systematic retrospective test writing:
