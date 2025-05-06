@@ -21,11 +21,16 @@ In addition to testing, I served as the team’s timekeeper: tracking our progre
 This experience was invaluable, giving me a practical, end-to-end view of software development. I’d like to thank all my group members for their outstanding collaboration-and our professors for expanding our knowledge of software engineering.
 
 ## Enes' Section
-- Delivered core functionality on schedule
-- Received positive initial user feedback
-- Created a solid foundation for future enhancements
-- Established scalable infrastructure for growth
-- Developed comprehensive documentation
+
+This was my first end to end software project, and I learned a lot throughout the entire process both technically and in terms of teamwork. I was responsible for writing the functions related to parsing information from the API for the search bar and the book details. I also created the HTML structure for the book details, book review, and My Library pages. Shahab helped us finalize the CSS for these pages, ensuring pages looked clean and consistent.  
+In addition, I assisted Ali with finalizing the HTML for the login and sign-up pages. I learned a great deal about backend development from working closely with Mohammad and Ali. Luna kept our team on track and regularly providing feedback, which was really helpful.
+
+We used Figma to design the pages, and everyone actively participated in the design process. We made several brainstorming meetings and translated our Figma designs into working code.
+
+For project management, we used Trello to divide tasks and track who was working on what—this made our teamwork feel very organized and professional.  
+
+We also did a lot of research on Flask and learned how to integrate APIs into our code. I constantly reviewed the slides and watched lecture recordings, which helped me apply what we learned in class directly to our project. Working on this project has been incredibly informative and valuable for my personal development. 
+We always supported each other as a team, and I'm very happy to have worked on this project with such great teammates.
 
 
 ## Shahab's Section 
