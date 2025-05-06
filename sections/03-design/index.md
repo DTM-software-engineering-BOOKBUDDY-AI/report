@@ -93,117 +93,8 @@ This report provides a detailed analysis of the Bookbuddy Flask project based on
         *   `BookRecommender`: Attributes (`preferences`, `vectorizer`). Methods (`get_weighted_text`, `get_user_preference_text`, `get_book_text`, `calculate_similarity`, `get_recommendations`, `debug_similarity`, `process_google_books_response`).
         *   Forms: Attributes corresponding to form fields. Methods (`validate_on_submit`, etc. - provided by Flask-WTF).
     *   **Relationships:** Defined via `db.relationship` and `db.ForeignKey` in `models.py` (One-to-One, One-to-Many, Many-to-Many via association object). Service classes (`BookRecommender`, `GoogleBooksAPI`) are used by the Application Tier (Flask routes). Forms are used in routes to process input.
-*   **UML Class Diagram:**
 
-    ```mermaid
-     classDiagram
-        class User {
-            +Integer id
-            +String email
-            +String username
-            +String password_hash
-            +DateTime created_at
-            +String profile_picture
-            +Text bio
-            +String gender
-            +String birthday
-            +String telephone
-            +String language
-            +String privacy
-            +Text friends_list
-            +Text block_list
-            +Text hide_list
-            +set_password(password)
-            +check_password(password)
-        }
-        class UserPreferences {
-            +Integer id
-            +Integer user_id
-            +String style
-            +String theme
-            +String mood
-            +String length
-            +String pace
-            +String language
-            +String maturity
-            +String genres
-            +Integer reading_goal
-            +Boolean email_notifications
-        }
-        class ReadingList {
-            +Integer id
-            +Integer user_id
-            +Integer book_id
-            +String status
-            +Integer progress
-            +DateTime started_at
-            +DateTime finished_at
-        }
-        class Book {
-            +Integer id
-            +String title
-            +String author
-            +String cover_image
-            +String genre
-            +String language
-            +Integer publication_year
-            +Text summary
-        }
-        class GoogleBooksAPI {
-            -String api_key
-            -String BASE_URL
-            +search_books(query, max_results)
-            +get_book_details(book_id)
-            -_parse_books(items)
-            -_parse_book_details(data)
-        }
-        class BookRecommender {
-            ~UserPreferences preferences
-            ~TfidfVectorizer vectorizer
-            +get_user_preference_text(user_id)
-            +get_book_text(book_data)
-            +calculate_similarity(user_id, book_data)
-            +get_recommendations(user_id, book_list, num)
-            +process_google_books_response(books)
-        }
-        class FlaskApp {
-            +route()
-            +register_blueprint()
-            +run()
-            # Uses services and models
-        }
-        class FlaskWTF_Form {
-            # Form fields
-            +validate_on_submit()
-        }
-        class LoginForm
-        class SignupForm
-        class ProfileForm
 
-        User "1" -- "1" UserPreferences : has
-        User "1" -- "0..*" ReadingList : manages
-        Book "1" -- "0..*" ReadingList : listed in
-        FlaskApp ..> GoogleBooksAPI : uses
-        FlaskApp ..> BookRecommender : uses
-        FlaskApp ..> User : uses
-        FlaskApp ..> Book : uses
-        FlaskApp ..> ReadingList : uses
-        FlaskApp ..> UserPreferences : uses
-        BookRecommender ..> UserPreferences : uses
-        FlaskApp ..> FlaskWTF_Form : uses
-        LoginForm --|> FlaskWTF_Form
-        SignupForm --|> FlaskWTF_Form
-        ProfileForm --|> FlaskWTF_Form
-
-        User --|> UserMixin
-        User --|> db.Model
-        UserPreferences --|> db.Model
-        ReadingList --|> db.Model
-        Book --|> db.Model
-
-    ```
-
-*   **Distributed System Aspects:** (Currently limited, mostly client-server + external API)
     *   **Domain Concepts Mapping:**
         *   `User`, `UserPreferences`, `ReadingList`, `Book` data resides in the **Database Component**.
         *   Logic related to these concepts is handled within the **Flask Application Server Component** (routes, models, services).
@@ -230,62 +121,6 @@ This report provides a detailed analysis of the Bookbuddy Flask project based on
     *   **Repository:** Used for data access via SQLAlchemy models.
     *   **Service Layer:** `GoogleBooksAPI` and `BookRecommender` act as services encapsulating specific logic/interactions.
     *   **Caching:** Used in `GoogleBooksAPI` to avoid redundant external calls.
-*   **UML Sequence Diagram (Get Recommendations):**
-
-    ```mermaid
-    sequenceDiagram
-        actor User
-        participant Browser
-        participant FlaskApp
-        participant RecSvc as Recommendation Service
-        participant Prefs as UserPreferences Model
-        participant GBSvc as Google Books Service
-        participant ExtAPI as Google Books API
-        participant BookModel as Book Model
-        participant RLModel as ReadingList Model
-
-        User->>Browser: Submits Preferences Form (`/recommendation` POST)
-        Browser->>FlaskApp: POST /recommendation (form data)
-        FlaskApp->>Prefs: Query UserPreferences (current_user.id)
-        alt Preferences Exist
-            Prefs-->>FlaskApp: UserPreferences object
-            FlaskApp->>Prefs: Update preferences (form data)
-        else Preferences Don't Exist
-            FlaskApp->>Prefs: Create new UserPreferences
-            FlaskApp->>db: Add preferences
-        end
-        FlaskApp->>db: Commit session
-        FlaskApp->>RecSvc: get_user_preference_text(user_id)
-        RecSvc->>Prefs: Query UserPreferences (user_id)
-        Prefs-->>RecSvc: UserPreferences object
-        RecSvc-->>FlaskApp: user_prefs_text
-        FlaskApp->>FlaskApp: get_search_queries_from_preferences(user_prefs_text)
-        FlaskApp-->>FlaskApp: search_queries (list)
-        loop For each query in search_queries
-            FlaskApp->>GBSvc: fetch_books_from_google_api(query)
-            GBSvc->>ExtAPI: GET /volumes (query)
-            ExtAPI-->>GBSvc: JSON book data
-            GBSvc-->>FlaskApp: Raw book items
-            FlaskApp->>FlaskApp: process_google_books_response(items)
-            FlaskApp-->>FlaskApp: processed_books (list)
-            Note right of FlaskApp: Accumulate all_books
-        end
-        Note right of FlaskApp: Remove duplicates from all_books
-        FlaskApp->>RecSvc: get_recommendations(user_id, all_books, 5)
-        loop For each book in all_books
-            RecSvc->>RecSvc: calculate_similarity(user_id, book)
-            RecSvc-->>RecSvc: similarity_score
-        end
-        RecSvc-->>FlaskApp: sorted_recommendations (list)
-        loop For each recommendation
-            FlaskApp->>RLModel: Query ReadingList (user_id, book_id)
-            RLModel-->>FlaskApp: ReadingList entry or None
-            Note right of FlaskApp: Add reading_status to recommendation
-        end
-        FlaskApp->>Browser: Render recommendation.html (recommendations)
-        Browser->>User: Display Recommendations Page
-
-    ```
 
 ## 5. Behaviour
 
@@ -299,35 +134,6 @@ This report provides a detailed analysis of the Bookbuddy Flask project based on
     *   User actions (signup, login, profile update, submitting forms, adding to list) trigger HTTP requests.
     *   Flask routes receive requests, validate data (using Forms), interact with SQLAlchemy models (`User`, `ReadingList`, `UserPreferences`).
     *   Calling `db.session.add()`, modifying model attributes, and `db.session.commit()` updates the state in the **Database**.
-*   **UML State Diagram (`ReadingList` Status):**
-
-    ```mermaid
-    stateDiagram-v2
-        [*] --> NotInList : User views book
-        NotInList --> WantToRead : User clicks "Want to Read"
-        NotInList --> Reading : User clicks "Start Reading"
-        WantToRead --> Reading : User clicks "Start Reading"
-        WantToRead --> NotInList : User removes from list
-        Reading --> Finished : User clicks "Mark as Finished"
-        Reading --> WantToRead : User changes status
-        Reading --> NotInList : User removes from list
-        Finished --> Reading : User clicks "Read Again"
-        Finished --> NotInList : User removes from list
-
-        state WantToRead {
-            note right of WantToRead : status = 'want'
-        }
-        state Reading {
-            note right of Reading : status = 'current'
-        }
-        state Finished {
-            note right of Finished : status = 'finished'
-        }
-        state NotInList {
-            note right of NotInList : No ReadingList entry exists
-        }
-
-    ```
 
 ## 6. Data-related Aspects
 
