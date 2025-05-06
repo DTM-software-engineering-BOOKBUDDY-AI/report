@@ -8,6 +8,11 @@ nav_order: 12
 
 This section provides a critical self-evaluation of the Bookbuddy project, assessing strengths, weaknesses, and lessons learned throughout the development process.
 
+## Alireza's Section
+This project was a significant learning journey, encompassing both the acquisition of a new technology stack---Flask and its related libraries like WTForms for forms and SQLAlchemy for database management---and the development of crucial teamwork skills. I embraced a project management role, which involved writing the product backlog on our Trello board and delegating tasks. My contributions also included creating the initial website design in Figma and collaborating with the team to define the project's pages and the overall user journey through the website.
+
+Following the initial planning and design phases, where we also distributed the front-end HTML, CSS, and JavaScript tasks, my focus shifted to the backend. I dedicated myself to understanding the Flask framework, its file structure, and how to configure routes in the main `app.py` file. Subsequently, I built key technical components such as the database, connected relevant APIs, and configured the user login and sign-up functionalities, linking them to the database. Although these technical aspects were entirely new to me, I thoroughly enjoyed the process of learning and implementing them.
+
 ## Xiuyue's Section 
 For our BookBuddy project, I was responsible for the testing phase. I reviewed the lessons and adhered to a clear, well-organized testing structure, separating folders for different components-such as modules, routes, forms, etc. I also performed test-coverage and configuration checks to ensure the application’s reliability and compatibility. However, there are still some untested or overlooked directories that we can address in the near future.
 
@@ -15,7 +20,7 @@ In addition to testing, I served as the team’s timekeeper: tracking our progre
 
 This experience was invaluable, giving me a practical, end-to-end view of software development. I’d like to thank all my group members for their outstanding collaboration-and our professors for expanding our knowledge of software engineering.
 
-## Enes Turan's Section
+## Enes' Section
 - Delivered core functionality on schedule
 - Received positive initial user feedback
 - Created a solid foundation for future enhancements
