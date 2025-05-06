@@ -49,39 +49,11 @@ A typical deployment process involves the following steps:
 ## Licensing
 
 ### Current Status
-
-No explicit license file (e.g., `LICENSE` or `LICENSE.md`) was found in the root directory of the `code-rep-for-bookbuddy` repository. **In the absence of an explicit license, standard copyright laws apply by default. This means the code is proprietary and others do not have permission to use, modify, or distribute it without explicit permission from the copyright holder.**
-
-### Recommendation
-
-If the project is intended to be shared or allow contributions, choosing an open-source license is crucial. Common choices include:
-
-* **MIT License:** A very permissive license that allows broad reuse with minimal restrictions (requires only attribution and inclusion of the license text). It's excellent for encouraging adoption and modification.
-* **Apache License 2.0:** Similar to MIT in permissiveness but also provides an express grant of patent rights from contributors to users.
-* **GNU GPLv3 (General Public License):** A "copyleft" license. It requires that derivative works or distributions incorporating the code must also be licensed under the GPLv3, ensuring that modifications remain open source.
-
-The appropriate license depends on the project's goals. For many web application projects intended for general use and community contribution, the **MIT License** offers a simple and popular balance. It is highly recommended to add a `LICENSE` file to the repository's root directory clearly stating the chosen license terms.
+ **Choice of the License:**
+*   **Which one and why:** The project uses the **Apache License 2.0**, as specified in the `LICENSE` file and `README.md`. This is a permissive license that allows for broad use, modification, and distribution, while also providing patent protection and defining contribution terms. It's a common and well-regarded choice for open-source projects.
 
 ## Versioning Schema
 
 ### Current Status
 
-No specific version number (e.g., `1.0.0`) or defined versioning schema was identified within the project files reviewed (like `config.py` or a dedicated version file) or through Git tags.
-
-### Recommendation
-
-Adopting a standard versioning schema is highly recommended for tracking releases, managing dependencies effectively, and clearly communicating the nature of changes between versions. **Semantic Versioning (SemVer)** is the most widely adopted and understood standard.
-
-* **Format:** `MAJOR.MINOR.PATCH` (e.g., `1.2.3`)
-    * Increment `MAJOR` version for incompatible API changes.
-    * Increment `MINOR` version for adding functionality in a backward-compatible manner.
-    * Increment `PATCH` version for backward-compatible bug fixes.
-* **Benefits:** SemVer provides clear expectations for users and developers about the impact of updating the software.
-* **Implementation:**
-    * It's common practice to start initial development releases at `0.1.0`.
-    * The first stable, public release should typically be `1.0.0`.
-    * Use Git tags (e.g., `git tag v1.0.0`) to mark specific release points in the version history.
-    * Optionally, store the canonical version number within the project code itself (e.g., defining a `__version__` variable in the main package's `__init__.py`, like `Bookbuddy_app/__init__.py`).
-
----
-*This document provides guidance based on the observed state of the repository and common software development practices. It should be adapted and refined based on the specific decisions and future plans for the BookBuddy project.*
+Unfortionatly we did not opt for versioning during the development process. 
