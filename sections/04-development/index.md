@@ -8,10 +8,7 @@ nav_order: 5
 This section outlines the version control practices employed during the project and discusses a key learning experience related to project setup.
 ## Development
 
-### DVCS (Distributed Version Control System)
 
-- **System Used:** Git is used for version control, as indicated by the presence of a `.git` directory in the project structure.
-- **Conventions (Branches, Commits, PRs, Issues, Reviews):** Specific conventions for branching strategies (e.g., Gitflow, GitHub Flow), commit message formatting, pull request procedures, issue tracking, and code review processes are not documented within the provided project files (`README.md`, source code). These are typically established and maintained as team/project standards outside the codebase itself.
 
 ### Implementation Details
 
