@@ -16,6 +16,5 @@ nav_order: 1
 
 ## Abstract
 
-(~ 2000 characters)
+Bookbuddy is a web application designed to help users discover new books and manage their personal reading collections. It offers two primary ways for users to find books: a direct search function for specific titles or authors, and a personalized book discovery tool that suggests relevant books based on user responses to a questionnaire. Once registered, users can manage their profiles and organize books within a virtual library, categorizing them into states such as 'wants to read,' 'is reading,' or 'has read,' creating a tailored reading journey.
 
-Here you should briefly explain what the project is about.
