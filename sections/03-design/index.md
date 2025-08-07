@@ -7,13 +7,152 @@ nav_order: 4
 # Design
 # Bookbuddy Design Document
 
-This document contains the UML diagrams that describe the architecture and behavior of the Bookbuddy application.
+This document contains the UML diagrams that describe the architecture and behavior of the Bookbuddy application, following the C4 model for visualizing software architecture.
 
 ---
 
-## 1. Class Diagram
+## Level 1: System Context Diagram
 
-The class diagram provides an overview of the main classes in the system, their attributes, methods, and the relationships between them. It serves as a blueprint for the application's structure.
+This diagram provides a high-level overview of the system, showing how it interacts with its users and other systems.
+
+```mermaid
+useCaseDiagram
+    actor "Guest" as Guest
+    actor "Registered User" as User
+
+    User --|> Guest
+
+    rectangle "Bookbuddy System" {
+        usecase "Search for Books" as UC1
+        usecase "View Book Details" as UC2
+        usecase "Register Account" as UC3
+        usecase "Log In" as UC4
+        usecase "Manage Profile" as UC5
+        usecase "Manage Reading List" as UC6
+        usecase "Get Book Recommendations" as UC7
+        usecase "Log Out" as UC8
+    }
+
+    Guest -- (UC1)
+    Guest -- (UC2)
+    Guest -- (UC3)
+    Guest -- (UC4)
+
+    User -- (UC5)
+    User -- (UC6)
+    User -- (UC7)
+    User -- (UC8)
+```
+
+---
+
+## Level 2: Container Diagram
+
+This diagram zooms into the system to show the high-level containers (applications, data stores, etc.) and their interactions.
+
+```mermaid
+deploymentDiagram
+    node "User's Computer/Mobile" {
+        artifact "Web Browser" as Browser
+    }
+
+    node "Cloud Platform (e.g., Vercel)" {
+        node "Application Server" {
+            artifact "Bookbuddy Flask App" as App
+        }
+        node "Database Server" {
+            artifact "Bookbuddy DB" as DB
+        }
+    }
+
+    node "Google's Infrastructure" {
+        artifact "Google Books API" as GoogleAPI
+    }
+
+    Browser ->> App : HTTPS
+    App ->> DB : DB Connection
+    App ->> GoogleAPI : API Requests (HTTPS)
+```
+
+---
+
+## Level 3: Component & Package Diagrams
+
+These diagrams zoom into a container to show the components and packages within it.
+
+### Component Diagram
+
+This diagram illustrates the major components of the Bookbuddy application and their dependencies.
+
+```mermaid
+componentDiagram
+    actor User
+
+    node "Client Device" {
+        [Web Browser] as Browser
+    }
+
+    node "Web Server (e.g., Vercel)" {
+        package "Flask Application" {
+            [Routes]
+            [Forms]
+            [Models]
+            [Services]
+        }
+        [Database (SQLite)]
+    }
+
+    node "Google Cloud" {
+        [Google Books API]
+    }
+
+    User -->> Browser
+    Browser -->> Routes : HTTP Requests
+    Routes -->> Forms : Validation
+    Routes -->> Services : Business Logic
+    Routes -->> Models : Data Access
+    Services -->> Models
+    Services -->> [Google Books API] : External API Calls
+    Models -->> [Database (SQLite)] : CRUD Operations
+```
+
+### Package Diagram
+
+This diagram shows the structure of the codebase in terms of packages (namespaces or folders).
+
+```mermaid
+packageDiagram
+    package "Bookbuddy" {
+        package "routes" {
+            [books.py]
+        }
+        package "services" {
+            [google_books.py]
+            [cache_service.py]
+        }
+        package "templates" {}
+        [app.py]
+        [models.py]
+        [forms.py]
+        [config.py]
+        [extensions.py]
+        [Recommendation.py]
+    }
+
+    [app.py] --> [routes.books.py]
+    [app.py] --> [models.py]
+    [app.py] --> [forms.py]
+    [app.py] --> [Recommendation.py]
+    [routes.books.py] --> [services.google_books.py]
+    [services.google_books.py] --> [services.cache_service.py]
+    [Recommendation.py] --> [models.py]
+```
+
+---
+
+## Level 4: Code (Class Diagrams)
+
+This diagram zooms into a component to show the implementation details.
 
 ```mermaid
 classDiagram
@@ -163,11 +302,15 @@ classDiagram
 
 ---
 
-## 2. Sequence Diagrams
+## Behavioral Diagrams
+
+These diagrams describe the behavior of the system.
+
+### Sequence Diagrams
 
 Sequence diagrams illustrate how objects interact with each other over time. These diagrams show the sequence of messages exchanged between objects to perform a specific task.
 
-### User Signup
+#### User Signup
 ```mermaid
 sequenceDiagram
     participant User
@@ -189,7 +332,7 @@ sequenceDiagram
     end
 ```
 
-### User Login
+#### User Login
 ```mermaid
 sequenceDiagram
     participant User
@@ -218,7 +361,7 @@ sequenceDiagram
     end
 ```
 
-### Book Recommendation
+#### Book Recommendation
 ```mermaid
 sequenceDiagram
     participant User
@@ -243,7 +386,7 @@ sequenceDiagram
     Browser->>User: Shows recommended books
 ```
 
-### Adding a Book to Reading List
+#### Adding a Book to Reading List
 ```mermaid
 sequenceDiagram
     participant User
@@ -266,13 +409,11 @@ sequenceDiagram
     Browser->>User: Updates UI to show book in reading list
 ```
 
----
-
-## 3. Activity Diagrams
+### Activity Diagrams
 
 Activity diagrams describe the flow of control in a process. They are useful for modeling the business logic and workflows of the application.
 
-### User Registration
+#### User Registration
 ```mermaid
 activityDiagram
     title User Registration
@@ -296,7 +437,7 @@ activityDiagram
     stop
 ```
 
-### User Login
+#### User Login
 ```mermaid
 activityDiagram
     title User Login
@@ -320,7 +461,7 @@ activityDiagram
     stop
 ```
 
-### Book Recommendation
+#### Book Recommendation
 ```mermaid
 activityDiagram
     title Book Recommendation
@@ -340,7 +481,7 @@ activityDiagram
     stop
 ```
 
-### Adding a Book to Reading List
+#### Adding a Book to Reading List
 ```mermaid
 activityDiagram
     title Adding a Book to Reading List
@@ -366,13 +507,11 @@ activityDiagram
     stop
 ```
 
----
-
-## 4. State Diagram
+### State Diagram
 
 This state diagram shows the transitions between states of a `Book` object within a user's reading list.
 
-### Book Status in Reading List
+#### Book Status in Reading List
 ```mermaid
 stateDiagram-v2
     [*] --> Not_In_Library
@@ -384,112 +523,6 @@ stateDiagram-v2
     Want_to_Read --> Not_In_Library: Remove from list
     Currently_Reading --> Want_to_Read: Stop reading
     Finished --> Currently_Reading: Reread book
-```
-
----
-
-## 5. Component Diagram
-
-The component diagram shows the architectural components of the application and their relationships.
-
-### Application Architecture
-```mermaid
-componentDiagram
-    actor User
-
-    node "Client Device" {
-        [Web Browser] as Browser
-    }
-
-    node "Web Server (e.g., Vercel)" {
-        package "Flask Application" {
-            [Routes]
-            [Forms]
-            [Models]
-            [Services]
-        }
-        [Database (SQLite)]
-    }
-
-    node "Google Cloud" {
-        [Google Books API]
-    }
-
-    User -->> Browser
-    Browser -->> Routes : HTTP Requests
-    Routes -->> Forms : Validation
-    Routes -->> Services : Business Logic
-    Routes -->> Models : Data Access
-    Services -->> Models
-    Services -->> [Google Books API] : External API Calls
-    Models -->> [Database (SQLite)] : CRUD Operations
-```
-
----
-
-## 6. Deployment Diagram
-
-This deployment diagram shows the physical deployment of the application's artifacts on nodes.
-
-### Physical Deployment
-```mermaid
-deploymentDiagram
-    node "User's Computer/Mobile" {
-        artifact "Web Browser" as Browser
-    }
-
-    node "Cloud Platform (e.g., Vercel)" {
-        node "Application Server" {
-            artifact "Bookbuddy Flask App" as App
-        }
-        node "Database Server" {
-            artifact "Bookbuddy DB" as DB
-        }
-    }
-
-    node "Google's Infrastructure" {
-        artifact "Google Books API" as GoogleAPI
-    }
-
-    Browser ->> App : HTTPS
-    App ->> DB : DB Connection
-    App ->> GoogleAPI : API Requests (HTTPS)
-```
-
----
-
-## 7. Use Case Diagram
-
-The use case diagram shows the interactions between actors (users) and the use cases they can perform within the system.
-
-### User Interactions
-```mermaid
-useCaseDiagram
-    actor "Guest" as Guest
-    actor "Registered User" as User
-
-    User --|> Guest
-
-    rectangle "Bookbuddy System" {
-        usecase "Search for Books" as UC1
-        usecase "View Book Details" as UC2
-        usecase "Register Account" as UC3
-        usecase "Log In" as UC4
-        usecase "Manage Profile" as UC5
-        usecase "Manage Reading List" as UC6
-        usecase "Get Book Recommendations" as UC7
-        usecase "Log Out" as UC8
-    }
-
-    Guest -- (UC1)
-    Guest -- (UC2)
-    Guest -- (UC3)
-    Guest -- (UC4)
-
-    User -- (UC5)
-    User -- (UC6)
-    User -- (UC7)
-    User -- (UC8)
 ```
 
 
