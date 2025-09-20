@@ -24,7 +24,7 @@ After the registration and login, users are redirected to the homepage. From her
 4. AI ranking is applied, and the top results are returned to the frontend. 
 5. The frontend displays the recommended books with covers, descriptions, and buy links, while storing relevant history for better future suggestions.
 
-![Screenshot]([https://user-images.githubusercontent.com/12345678/abcdef.png](https://github.com/DTM-software-engineering-BOOKBUDDY-AI/report/blob/main/sections/03-design/Screenshot%202025-09-20%20at%2015.59.11.png?raw=true))
+![image alt](https://github.com/DTM-software-engineering-BOOKBUDDY-AI/report/blob/main/sections/03-design/Screenshot%202025-09-20%20at%2015.59.11.png?raw=true)
 
 # Behaviour 
 
@@ -39,6 +39,7 @@ After the registration and login, users are redirected to the homepage. From her
 7. **Result Displayed:** Personalized recommendations are shown with covers, descriptions, and links.
 8. **Error State:** If login fails, a query returns no results, or external APIs fail, the user is notified with an error message.
 
+![image alt](https://github.com/DTM-software-engineering-BOOKBUDDY-AI/report/blob/main/sections/03-design/Screenshot%202025-09-20%20at%2016.31.43.png?raw=true)
 
 
 # Domain-driven Design (DDD) — BookBuddy
@@ -75,6 +76,7 @@ After the registration and login, users are redirected to the homepage. From her
 4. Preferences: UserPreferencesUpdated.
 5. Recommendations: RecommendationsGenerated, RecommendationClicked.
 
+![image alt](https://github.com/DTM-software-engineering-BOOKBUDDY-AI/report/blob/main/sections/03-design/Screenshot%202025-09-20%20at%2017.41.11.png?raw=true)
 
 # Data-related aspects
 #### There are some data need to be store such as:  
