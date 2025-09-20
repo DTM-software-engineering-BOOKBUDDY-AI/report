@@ -24,6 +24,7 @@ After the registration and login, users are redirected to the homepage. From her
 4. AI ranking is applied, and the top results are returned to the frontend. 
 5. The frontend displays the recommended books with covers, descriptions, and buy links, while storing relevant history for better future suggestions.
 
+![Screenshot]([https://user-images.githubusercontent.com/12345678/abcdef.png](https://github.com/DTM-software-engineering-BOOKBUDDY-AI/report/blob/main/sections/03-design/Screenshot%202025-09-20%20at%2015.59.11.png?raw=true))
 
 # Behaviour 
 
