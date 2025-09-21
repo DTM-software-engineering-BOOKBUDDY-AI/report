@@ -73,7 +73,7 @@ cd Bookbuddy
 ### Step 6 : running 
 With the virtual environment active and positioned in the correct directory (Bookbuddy), start the Flask development server by executing the main  script:
 ```bash
-python bookbuddy.py
+python app.py
 ```
 output should be :
 ```bash
