@@ -1,3 +1,10 @@
+---
+title: Deployment
+has_children: false
+nav_order: 8
+---
+
+
 # Deployment   
 **Deployment and Execution of bookbuddy**
 
