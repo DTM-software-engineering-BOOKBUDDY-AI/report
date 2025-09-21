@@ -70,10 +70,10 @@ If the main script is located inside a subdirectory:
 ```bash
 cd Bookbuddy
 ```
-### Step 6 : Run the application
-With the virtual environment active and positioned in the correct directory (Bookbuddy), start the Flask development server by executing the main application script:
+### Step 6 : running 
+With the virtual environment active and positioned in the correct directory (Bookbuddy), start the Flask development server by executing the main  script:
 ```bash
-python app.py
+python bookbuddy.py
 ```
 output should be :
 ```bash
@@ -82,7 +82,7 @@ output should be :
 * Running on http://127.0.0.1:5000/
 ```
 
-### Step 7: Access the application
+### Step 7: Accessing 
 **Open a browser and go to**  http://127.0.0.1:5000/   **to use Bookbuddy**
 The Bookbuddy application's home page should load, allowing you to interact with the book recommendation form.
 
