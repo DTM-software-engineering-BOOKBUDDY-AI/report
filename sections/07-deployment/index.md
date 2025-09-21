@@ -19,7 +19,7 @@ Deployment focuses on **local execution** using Flask’s built-in development s
 - pip (Python package manager)  
 - Git (for cloning the repository)  
 - (Optional) Virtual environment manager (venv) 
-- 
+
 
 ## 4.2 Prerequisites
 
