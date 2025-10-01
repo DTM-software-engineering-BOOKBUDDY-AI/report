@@ -60,24 +60,10 @@ venv\Scripts\activate
 ### Step 3: Install dependencies
 All required libraries are listed in requirements.txt (root folder), including `Flask` and `python-dotenv`. Install them with `pip` inside the active virtual environment.
 ```bash 
-pip install -r requirements-test.txt
+pip install -r requirements-dev.txt
 ```
-### Step 4: Configure environment variables
-1. **Create a `.env` file**: In the root directory of the repository (the same directory containing `requirements.txt` and the `venv` folder), create a new file named exactly `.env`.
 
-2. **Add the API Key**: Open the `.env` file with a plain text editor and add the following line, ensuring you replace `'YOUR_ACTUAL_GOOGLE_API_KEY'` with your valid Google API key obtained from Google Cloud Console or the relevant service:
-
-```bash
-GOOGLE_API_KEY='YOUR_ACTUAL_GOOGLE_API_KEY'
-```
-⚠️ Add .env to .gitignore to protect sensitive keys.
-
-### Step 5: Navigate to the application directory
-If the main script is located inside a subdirectory:
-```bash
-cd Bookbuddy
-```
-### Step 6 : running 
+### Step 4 : running 
 With the virtual environment active and positioned in the correct directory (Bookbuddy), start the Flask development server by executing the main  script:
 ```bash
 python app.py
@@ -88,12 +74,11 @@ output should be :
 * Debug mode: on/off
 * Running on http://127.0.0.1:5000/
 ```
-
-### Step 7: Accessing 
+### Step 5: Accessing 
 **Open a browser and go to**  http://127.0.0.1:5000/   **to use Bookbuddy**
 The Bookbuddy application's home page should load, allowing you to interact with the book recommendation form.
 
-### Step 8: Stop the application
+### Step 6: Stop the application
 Press CTRL + C in the terminal.
 Deactivate the virtual environment with:
 ```bash
