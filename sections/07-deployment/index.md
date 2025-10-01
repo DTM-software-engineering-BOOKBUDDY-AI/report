@@ -60,7 +60,7 @@ venv\Scripts\activate
 ### Step 3: Install dependencies
 All required libraries are listed in requirements.txt (root folder), including `Flask` and `python-dotenv`. Install them with `pip` inside the active virtual environment.
 ```bash 
-pip install -r requirements.txt
+pip install -r requirements-test.txt
 ```
 ### Step 4: Configure environment variables
 1. **Create a `.env` file**: In the root directory of the repository (the same directory containing `requirements.txt` and the `venv` folder), create a new file named exactly `.env`.
