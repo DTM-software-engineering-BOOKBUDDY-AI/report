@@ -15,8 +15,8 @@ A release of BookBuddy typically involves packaging the following components:
 * **Backend Application:** Python Flask code, including routes, models, forms, and service logic.
 * **Frontend Assets:** HTML templates (located in `Bookbuddy_app/Templates/`), CSS stylesheets, and JavaScript files (located in `Bookbuddy_app/static/`).
 * **Dependencies:** The list of required Python packages specified in `requirements.txt`.
-* **Database Migrations:** Scripts needed to update the database schema, if applicable for the release.
-* **Configuration:** Secure management of sensitive details like `SECRET_KEY` and `GOOGLE_BOOKS_API_KEY` is critical. This is often handled through environment variables (potentially loaded via `python-dotenv` during development) and by ensuring configuration files containing secrets are listed in `.gitignore`.
+
+
 
 
 ## Licensing
